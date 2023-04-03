@@ -11,7 +11,7 @@ export default function City({ data }: { data: any }) {
           key={index}
           condition={day.day.condition}
           date={day.date}
-          name={day.location.name}
+          name={data.location.name}
         />
       ))}
       <div>

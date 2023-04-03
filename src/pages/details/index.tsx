@@ -1,19 +1,23 @@
 import { BoxWeather } from '@/components/BoxWeather';
 import styles from '@/styles/BoxWeather.module.css';
+import Link from 'next/link';
+
 export default function CityDetails({
   data,
   name,
-  date,
 }: {
   data: any;
   name: string;
-  date: string;
 }) {
-  console.log(data);
   const { hour } = data.forecast.forecastday[0];
 
   return (
     <div className={styles.flex}>
+      <div>
+        <h2>
+          <Link href="/">Home</Link>
+        </h2>
+      </div>
       <h1>{name}</h1>
       {hour.map((item: any, index: number) => (
         <BoxWeather
@@ -36,5 +40,5 @@ export async function getServerSideProps(context: {
   `);
   const data = await res.json();
 
-  return { props: { data, name, date } };
+  return { props: { data, name } };
 }

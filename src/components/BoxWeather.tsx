@@ -21,19 +21,18 @@ export const BoxWeather: FC<BoxWeatherProps> = ({ date, condition, name }) => {
     });
   };
   return (
-    <div>
+    <div style={{ cursor: 'pointer' }}>
       <div>
         <div className={styles.flex} onClick={handleClick}>
           <div>{date}</div>
           <div>{condition?.text}</div>
           <div>
-            {/*   <Image
-          src={`http:${condition?.icon}`}
-          alt="Weather data by WeatherAPI.com"
-          width={50}
-          height={50}
-        /> */}
-            <img src={condition?.icon} alt="Weather data by WeatherAPI.com" />
+            <Image
+              src={`http:${condition?.icon}`}
+              alt="Weather data by WeatherAPI.com"
+              width={50}
+              height={50}
+            />
           </div>
         </div>
       </div>
