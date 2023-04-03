@@ -29,5 +29,11 @@ export async function getServerSideProps() {
   `);
   const data = await res.json();
 
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
   return { props: { data } };
 }
