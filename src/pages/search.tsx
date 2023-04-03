@@ -1,7 +1,7 @@
 import { BoxWeather } from '@/components/BoxWeather';
 import SpinnerLoading from '@/components/Spinner';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Input } from '@chakra-ui/react';
+import { Input, Link } from '@chakra-ui/react';
 import useDebounce from '@/hooks/useDebounce';
 import styles from '@/styles/BoxWeather.module.css';
 
@@ -15,8 +15,6 @@ export default function SearchCity() {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=0c5ddc9a402b4888962181915230304&q=${city}&days=7&aqi=no&alerts=no
   `)
       .then((res) => {
-        console.log(res);
-
         if (!res.ok) {
           throw Error('Could not fetch the data for that resource');
         }
@@ -37,12 +35,18 @@ export default function SearchCity() {
       {!weather && !error && <SpinnerLoading />}
       {weather && !error && (
         <div className={styles.flex}>
+          <div>
+            <h2>
+              <Link href="/">Home</Link>
+            </h2>
+          </div>
           <h1>{weather?.location?.name}</h1>
           {weather?.forecast?.forecastday?.map((day: any, index: number) => (
             <BoxWeather
               key={index}
               condition={day.day.condition}
               date={day.date}
+              name={weather?.location?.name}
             />
           ))}
         </div>

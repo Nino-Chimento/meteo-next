@@ -1,12 +1,25 @@
 import { BoxWeather } from '@/components/BoxWeather';
+import Link from 'next/link';
+import styles from '@/styles/BoxWeather.module.css';
 
 export default function City({ data }: { data: any }) {
   return (
-    <>
+    <div className={styles.flex}>
+      <h1>{data?.location?.name}</h1>
       {data.forecast.forecastday.map((day: any, index: number) => (
-        <BoxWeather key={index} condition={day.day.condition} date={day.date} />
+        <BoxWeather
+          key={index}
+          condition={day.day.condition}
+          date={day.date}
+          name={day.location.name}
+        />
       ))}
-    </>
+      <div>
+        <h2>
+          <Link href="/">Home</Link>
+        </h2>
+      </div>
+    </div>
   );
 }
 
